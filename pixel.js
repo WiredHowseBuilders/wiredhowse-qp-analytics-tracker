@@ -76,6 +76,27 @@
     }
   }
 
+  function autoInit() {
+    // find this script's own tag and pull site_id off its src query string,
+    // so a single <script src="...pixel.js?site_id=XYZ"> is enough - no second
+    // config block, no load-order requirement.
+    var scripts = document.getElementsByTagName('script');
+    for (var i = 0; i < scripts.length; i++) {
+      var src = scripts[i].src || '';
+      if (src.indexOf('pixel.js') !== -1) {
+        try {
+          var url = new URL(src);
+          var sid = url.searchParams.get('site_id');
+          if (sid) {
+            window.__whSiteId = sid;
+            send('pageview');
+          }
+        } catch (e) {}
+        break;
+      }
+    }
+  }
+
   window.wh = function (command, a, b) {
     if (command === 'init') {
       window.__whSiteId = a;
@@ -83,4 +104,7 @@
       send(a, b);
     }
   };
+
+  // auto-fire pageview if site_id was supplied on the script tag itself
+  autoInit();
 })(window);
