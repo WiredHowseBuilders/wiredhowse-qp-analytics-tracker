@@ -1,6 +1,6 @@
 <?php
 
-@include_once 'bootstrap.php';
+
 /**
  * track.php - Multi-tenant pixel ingest endpoint
  * Called by pixel.js. Writes one row to `events` per call.
@@ -25,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-require_once 'bootstrap.php';
 
 function input($key, $default = null) {
     return $_POST[$key] ?? $_GET[$key] ?? $default;
