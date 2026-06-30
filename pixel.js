@@ -9,7 +9,7 @@
  * Endpoint: change ENDPOINT below to your live track.php URL before deploying.
  */
 (function (window) {
-  var ENDPOINT = 'https://YOUR-DOMAIN.com/track.php';
+  var ENDPOINT = 'https://qop.wiredhowse.app/track.php';
   var SESSION_KEY = 'wh_session_id';
   var SITE_KEY = 'wh_site_id';
 
