@@ -1,0 +1,71 @@
+GTM SETUP — two Custom HTML tags
+
+============================================================
+TAG 1: "WH Pixel - Base / Pageview"
+Trigger: All Pages
+============================================================
+<script>
+(function(){
+  var s = document.createElement('script');
+  s.src = 'https://YOUR-DOMAIN.com/pixel.js';
+  s.onload = function () {
+    wh('init', 'SITE_ID_GOES_HERE');   // <-- swap in the site_id from create_site.php
+    wh('track', 'pageview');
+  };
+  document.head.appendChild(s);
+})();
+</script>
+
+This is the only tag needed on the optin page. It fires once on load, logs a
+pageview row tied to site_id + a fresh session_id, and captures click_id from
+the URL (?cid=, ?click_id=, or ?clickid=) automatically if present.
+
+============================================================
+TAG 2: "WH Pixel - Conversion"
+Trigger: whatever fires conversion (form submit success, thank-you page load,
+button click — set this trigger in GTM based on the actual conversion event)
+============================================================
+<script>
+(function(){
+  function fire() {
+    if (typeof wh === 'function') {
+      wh('track', 'conversion', { value: {{conversion value}} }); // wire {{conversion value}} to a GTM variable, or hardcode a number
+    } else {
+      setTimeout(fire, 200); // base tag hasn't loaded yet, retry briefly
+    }
+  }
+  fire();
+})();
+</script>
+
+Make sure Tag 1 fires before Tag 2 (GTM tag sequencing, or just trust the
+retry loop above — it'll wait up to a couple seconds for wh() to exist).
+
+============================================================
+NON-GTM / DIRECT EMBED (same two events, just inline)
+============================================================
+On the optin page, right before </body>:
+
+<script src="https://YOUR-DOMAIN.com/pixel.js"></script>
+<script>
+  wh('init', 'SITE_ID_GOES_HERE');
+  wh('track', 'pageview');
+</script>
+
+On the conversion page (thank-you page), right before </body>:
+
+<script src="https://YOUR-DOMAIN.com/pixel.js"></script>
+<script>
+  wh('init', 'SITE_ID_GOES_HERE');
+  wh('track', 'conversion', { value: 47.00 }); // swap in real sale amount if known
+</script>
+
+============================================================
+VERIFY DATA IS LANDING
+============================================================
+1. Open the optin page, check Network tab for a POST to track.php returning {"success":true}
+2. Hit the conversion page (or fake-submit), same check
+3. Confirm rows landed:
+   SELECT * FROM events WHERE site_id = 'SITE_ID_GOES_HERE' ORDER BY created_at DESC LIMIT 10;
+4. You should see one 'pageview' row and one 'conversion' row sharing the same session_id —
+   that's the link between the two pages you asked about in step 4/5 of your original workflow.
