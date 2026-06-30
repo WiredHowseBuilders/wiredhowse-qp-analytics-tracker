@@ -3,16 +3,16 @@
 // bootstrap.php  (merged: original bootstrap + config.php)
 //===================================================
 
-define('AUTH_SECRET',   getenv('AUTH_SECRET')   ?: '7f3a9d2e1b8c4f6a0e5d7c3b9a2f1e8d4c6b0a7f3e9d2c1b8a5f4e7d3c');
-define('AUTH_URL',      getenv('APP_URL')        ?: 'https://auth.wiredhowse.app');
-define('ADMIN_EMAIL',   getenv('AUTH_ADMIN_EMAIL') ?: 'koubre@gmail.com');
-define('ADMIN_PASS',    getenv('AUTH_ADMIN_PASS')  ?: 'Wh0use2025!#Secure');
-define('DB_HOST',       getenv('DB_HOST')        ?: 'mysql.railway.internal');
-define('DB_NAME',       getenv('DB_NAME')        ?: 'railway');
-define('DB_USER',       getenv('DB_USER')        ?: 'root');
-define('DB_PASS',       getenv('DB_PASS')        ?: 'xCYsTWijHyAPRWLJHelttygzytCGpvvF');
-define('JWT_TTL',       900); // 15 minutes
-define('SESSION_TTL',   86400 * 30); // 30 days
+if (!defined('AUTH_SECRET')) {define('AUTH_SECRET',   getenv('AUTH_SECRET')   ?: '7f3a9d2e1b8c4f6a0e5d7c3b9a2f1e8d4c6b0a7f3e9d2c1b8a5f4e7d3c');}
+if (!defined('AUTH_URL')) {define('AUTH_URL',      getenv('APP_URL')        ?: 'https://auth.wiredhowse.app');}
+if (!defined('ADMIN_EMAIL')) {define('ADMIN_EMAIL',   getenv('AUTH_ADMIN_EMAIL') ?: 'koubre@gmail.com');}
+if (!defined('ADMIN_PASS')) {define('ADMIN_PASS',    getenv('AUTH_ADMIN_PASS')  ?: 'Wh0use2025!#Secure');}
+if (!defined('DB_HOST')) {define('DB_HOST',       getenv('DB_HOST')        ?: 'mysql.railway.internal');}
+if (!defined('DB_NAME')) {define('DB_NAME',       getenv('DB_NAME')        ?: 'railway');}
+if (!defined('DB_USER')) {define('DB_USER',       getenv('DB_USER')        ?: 'root');}
+if (!defined('DB_PASS')) {define('DB_PASS',       getenv('DB_PASS')        ?: 'LdTzzPpFqlaPRrzFIkqkbZFtBSUiljbb');}
+if (!defined('JWT_TTL')) {define('JWT_TTL',       900);} // 15 minutes
+if (!defined('SESSION_TTL')) {define('SESSION_TTL',   86400 * 30);} // 30 days
 
 /*define('ALLOWED_DOMAINS', [
     'wiredhowse.com',
@@ -22,26 +22,19 @@ define('SESSION_TTL',   86400 * 30); // 30 days
 ]);*/
 
 
-define('DEBUG_MODE', true);                            // Set to false in production
+if (!defined('DEBUG_MODE')) {define('DEBUG_MODE', true);      }                      // Set to false in production
 
 
 
 // Display errors (only for development)
 
 if (DEBUG_MODE) {
-
     ini_set('display_errors', 1);
-
     ini_set('display_startup_errors', 1);
-
     error_reporting(E_ALL);
-
 } else {
-
     ini_set('display_errors', 0);
-
     error_reporting(0);
-
 }
 
 ////////////////////////////////////
@@ -126,17 +119,19 @@ $wh_defs = [
     'DEBUG_MODE'           => Env::get('DEBUG_MODE', false),
 ];
 
-define('ALLOWED_DOMAINS', [
+if (!defined('ALLOWED_DOMAINS')) {
+    define('ALLOWED_DOMAINS', [
     'wiredhowse.com',
     'wiredhowse.app',
     'alphadropsupply.com',
     'survivalskills.pro',
 ]);
+}
 
-define('ALLOWED_IPS', [
+if (!defined('ALLOWED_IPS')) { define('ALLOWED_IPS', [
     // Add trusted IP addresses that can access the tracking system
     // Example: '192.168.1.1', '10.0.0.1'
-]);
+]);}
 
 if (!defined('WH_SET')) {
     $wh_set = [];
