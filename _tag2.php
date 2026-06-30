@@ -1,4 +1,5 @@
-
+<script src="https://q0p.wiredhowse.app/pixel.js?site_id=001" async></script>
+<script src="https://q0p.wiredhowse.app/conversion.js?_wha=conversion" async></script>
 ============================================================
 TAG 2: "WH Pixel - Conversion"
 Trigger: whatever fires conversion (form submit success, thank-you page load,
@@ -22,9 +23,9 @@ so wh() exists. The retry loop covers normal load-order timing.
 
 ============================================================
 
-<a hred="_tag1.php">001</a>
+<a href="_tag1.php">001</a>
 
-<a hred="_tag2.php">002</a>
+<a href="_tag2.php">002</a>
 
-<a hred="_tag2.php">003</a>
+<a href="_tag2.php">003</a>
 
