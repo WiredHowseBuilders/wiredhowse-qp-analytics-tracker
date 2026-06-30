@@ -5,3 +5,7 @@ require_once 'bootstrap.php';
 
 ///=================================================
 
+?>
+<script>
+	console.log('_qop'+'p| loc: '+'index'); 
+</script>

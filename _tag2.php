@@ -29,3 +29,7 @@ so wh() exists. The retry loop covers normal load-order timing.
 
 <a href="_tag2.php">003</a>
 
+
+<script>
+  console.log('_qop'+'p| loc: '+'2'); 
+</script>
