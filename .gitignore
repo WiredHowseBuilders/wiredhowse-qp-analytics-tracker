@@ -1,0 +1,4 @@
+/__misc
+*_misc/
+.env
+.whconfig
