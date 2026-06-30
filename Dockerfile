@@ -13,6 +13,8 @@ RUN install-php-extensions \
 COPY . /app
 
 WORKDIR /app
+RUN echo "auto_prepend_file=/app/bootstrap.php" > /usr/local/etc/php/conf.d/zz-app.ini
+
 
 # Enable OPcache for production performance
 ENV PHP_OPCACHE_ENABLE=1 \
