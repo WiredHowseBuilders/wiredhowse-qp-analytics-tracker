@@ -1,6 +1,7 @@
 <?php
-
-
+if (!defined('WH_SITE_ID')) {
+define('WH_SITE_ID', '001'); 
+}
 /**
  * track.php - Multi-tenant pixel ingest endpoint
  * Called by pixel.js. Writes one row to `events` per call.
@@ -30,7 +31,7 @@ function input($key, $default = null) {
     return $_POST[$key] ?? $_GET[$key] ?? $default;
 }
 
-$siteId    = trim((string)input('site_id', ''));
+$siteId    = trim((string)input('site_id', WH_SITE_ID));
 $sessionId = trim((string)input('session_id', ''));
 $eventType = trim((string)input('event', 'pageview'));
 $clickId   = input('click_id');
