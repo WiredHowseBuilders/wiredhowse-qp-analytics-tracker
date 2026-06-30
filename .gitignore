@@ -2,3 +2,50 @@
 *_misc/
 .env
 .whconfig
+.htaccess
+
+
+# Dependencies
+node_modules/
+.env
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files (NEVER commit these)
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build output
+dist/
+build/
+
+# Runtime
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Cache
+.npm/
+.cache/
+assets/images/d4496156d8ddad1a2b438c9332851e5a.jpeg
+assets/images/exported-logs-6-9-2026-8-57-07-AM-24h
